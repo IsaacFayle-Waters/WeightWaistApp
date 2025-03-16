@@ -1,11 +1,13 @@
 import streamlit as st
-
 import matplotlib.pyplot as plt 
 import seaborn as sns 
 import pandas as pd 
 
+#Import data and convert datetime
 df = pd.read_csv('weight_loss_waist_size.csv')
+df_weights_only = pd.read_csv('weight_loss_only.csv')
 df['date'] = pd.to_datetime(df['date'], format='%d/%m/%y',errors='coerce')
+df_weights_only['date'] = pd.to_datetime(df_weights_only['date'], format='%d/%m/%y',errors='coerce')
 
 #Title
 st.title("Zak's Waist and Weight Tracker")
@@ -13,7 +15,7 @@ st.title("Zak's Waist and Weight Tracker")
 #Weight calcs
 height_m = 1.8034
 start_kg = 107.4
-current_kg = df['weight_kg'].iloc[-1]
+current_kg = df_weights_only['weight_kg'].iloc[-1]
 st_mod = 6.35029
 current_st = current_kg / st_mod
 total_kg_loss = start_kg - current_kg
@@ -37,7 +39,7 @@ ax1.tick_params(axis='y',labelcolor='tab:red')
 
 #Weight plot
 ax2 = ax1.twinx()
-sns.lineplot(data=df, x='date', y='weight_kg',ax=ax2,color = 'tab:blue')#, label='Weight(kg)')
+sns.lineplot(data=df_weights_only, x='date', y='weight_kg',ax=ax2,color = 'tab:blue')#, label='Weight(kg)')
 ax2.set_ylabel('Weight(kg)', color = 'tab:blue')
 ax2.tick_params(axis='y',labelcolor='tab:blue')
 
