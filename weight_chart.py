@@ -6,6 +6,7 @@ import pandas as pd
 
 df = pd.read_csv('weight_loss_waist_size.csv')
 df['date'] = pd.to_datetime(df['date'], format='%d/%m/%y',errors='coerce')
+
 #Title
 st.title("Zak's Waist and Weight Tracker")
 
@@ -22,7 +23,8 @@ bmi = current_kg / (height_m * height_m)
 start_bmi = start_kg /(height_m * height_m)
 
 info_string = f'''I am currently {current_kg}kg, which is {current_st:.2f} stone. 
-So, I have lost {total_kg_loss:.2f}kg since 24/01/2025, which is {total_st_loss:.2f} stone. My BMI is {bmi:.1f}, down from a BMI of {start_bmi:.1f}'''
+So, I have lost {total_kg_loss:.2f}kg since 24/01/2025, which is {total_st_loss:.2f} stone.
+My BMI is {bmi:.1f}, down from a BMI of {start_bmi:.1f}.'''
 st.write(info_string)
 
 #plt.figure(figsize=(8,8))
