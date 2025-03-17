@@ -25,8 +25,8 @@ bmi = current_kg / (height_m * height_m)
 start_bmi = start_kg /(height_m * height_m)
 
 info_string = f'''## I am currently {current_kg}kg, which is {current_st:.2f} stone.
-### So, I have lost {total_kg_loss:.2f}kg since 24/01/2025, which is {total_st_loss:.2f} stone.
-My BMI is {bmi:.1f}, down from a BMI of {start_bmi:.1f}.'''
+So, I have **lost {total_kg_loss:.2f}kg** since 24/01/2025, which is **{total_st_loss:.2f} stone**.  
+_My BMI is {bmi:.1f}, down from a BMI of {start_bmi:.1f}._'''
 st.markdown(info_string)
 
 #plt.figure(figsize=(8,8))
