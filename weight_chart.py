@@ -6,8 +6,8 @@ import pandas as pd
 #Import data and convert datetime
 df = pd.read_csv('weight_loss_waist_size.csv')
 df_weights_only = pd.read_csv('weight_loss_only.csv')
-df['date'] = pd.to_datetime(df['date'], format='%d/%m/%y',errors='coerce')
-df_weights_only['date'] = pd.to_datetime(df_weights_only['date'], format='%d/%m/%y',errors='coerce')
+df['date'] = pd.to_datetime(df['date'], format='%d/%m/%y',errors='coerce').dt.date
+df_weights_only['date'] = pd.to_datetime(df_weights_only['date'], format='%d/%m/%y',errors='coerce').dt.date
 
 #Title
 st.title("Zak's Waist and Weight Tracker")
@@ -50,11 +50,10 @@ plt.subplots_adjust(bottom=0.2)
 #plt.show()
 st.pyplot(fig)
 
-#TODO: EDIT DATETIME FROM READ-IN TO REMOVE TIME
-#Display Tables and Re-format datetime to remove time
-df_weights_only['date'] = pd.to_datetime(df_weights_only['date']).dt.date
+#Display Tables
+st.subheader('Weight')
 st.data_editor(df_weights_only,hide_index=True)
-df['date'] = pd.to_datetime(df['date']).dt.date
+st.subheader('Waist')
 st.data_editor(df,hide_index=True)
 
 #Update info
