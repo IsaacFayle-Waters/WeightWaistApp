@@ -43,16 +43,23 @@ sns.lineplot(data=df_weights_only, x='date', y='weight_kg',ax=ax2,color = 'tab:b
 ax2.set_ylabel('Weight(kg)', color = 'tab:blue')
 ax2.tick_params(axis='y',labelcolor='tab:blue')
 
-#Cosmetics
+#Cosmetics and Display
 fig.autofmt_xdate()
 plt.title('Weight-loss and Slimming Progression')
 plt.subplots_adjust(bottom=0.2)
 #plt.show()
 st.pyplot(fig)
 
+#TODO: EDIT DATETIME FROM READ-IN TO REMOVE TIME
+#Display Tables and Re-format datetime to remove time
+df_weights_only['date'] = pd.to_datetime(df_weights_only['date']).dt.date
+st.data_editor(df_weights_only,hide_index=True)
+df['date'] = pd.to_datetime(df['date']).dt.date
+st.data_editor(df,hide_index=True)
+
 #Update info
-last_weight_update = df_weights_only['date'].iloc[-1].date()
-last_waist_update = df['date'].iloc[-1].date()
+last_weight_update = df_weights_only['date'].iloc[-1]
+last_waist_update = df['date'].iloc[-1]
 
 update_string = f'''_Weight last updated: {last_weight_update}. 
 Waist measurement last updated: {last_waist_update}._'''
