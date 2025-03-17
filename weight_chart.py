@@ -24,10 +24,10 @@ total_st_loss = total_kg_loss / st_mod
 bmi = current_kg / (height_m * height_m)
 start_bmi = start_kg /(height_m * height_m)
 
-info_string = f'''I am currently {current_kg}kg, which is {current_st:.2f} stone. 
-So, I have lost {total_kg_loss:.2f}kg since 24/01/2025, which is {total_st_loss:.2f} stone.
+info_string = f'''## I am currently {current_kg}kg, which is {current_st:.2f} stone.
+### So, I have lost {total_kg_loss:.2f}kg since 24/01/2025, which is {total_st_loss:.2f} stone.
 My BMI is {bmi:.1f}, down from a BMI of {start_bmi:.1f}.'''
-st.write(info_string)
+st.markdown(info_string)
 
 #plt.figure(figsize=(8,8))
 fig,ax1 = plt.subplots(figsize=(8,8))
@@ -49,3 +49,11 @@ plt.title('Weight-loss and Slimming Progression')
 plt.subplots_adjust(bottom=0.2)
 #plt.show()
 st.pyplot(fig)
+
+#Update info
+last_weight_update = df_weights_only['date'].iloc[-1].date()
+last_waist_update = df['date'].iloc[-1].date()
+
+update_string = f'''_Weight last updated: {last_weight_update}. 
+Waist measurement last updated: {last_waist_update}._'''
+st.write(update_string)
