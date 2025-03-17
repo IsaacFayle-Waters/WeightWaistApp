@@ -1,2 +1,3 @@
 # WeightWaistApp
-Basic app to track my weight-loss/anti-diabetes 'journey'. 
+A simple little app to track my weight-loss/anti-diabetes 'journey'. 
+It's nice to see lines and colours.
