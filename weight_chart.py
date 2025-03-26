@@ -29,6 +29,18 @@ So, I have **lost {total_kg_loss:.2f}kg** since 24/01/2025, which is **{total_st
 _My BMI is {bmi:.1f}, down from a BMI of {start_bmi:.1f}._'''
 st.markdown(info_string)
 
+#Waist calc
+inch_mod = 0.3937007874
+start_cm = df['waist_cm'].iloc[0]
+start_inch = start_cm * inch_mod
+current_cm = df['waist_cm'].iloc[-1]
+current_inch = current_cm * inch_mod
+total_cm_lost = start_cm - current_cm
+total_inch_lost = start_inch - current_inch
+waist_info_string =f'''## My initial waist measurement was {start_cm}cm which is {start_inch:.2f} inches. 
+I have **lost {total_cm_lost:.2f}cm** from my waist, which is **{total_inch_lost:.2f} inches**. 
+Therefore, my waist is now {current_cm:.2f}cm, or {current_inch:.2f} inches.'''
+
 #plt.figure(figsize=(8,8))
 fig,ax1 = plt.subplots(figsize=(8,8))
 
@@ -49,6 +61,8 @@ plt.title('Weight-loss and Slimming Progression')
 plt.subplots_adjust(bottom=0.2)
 #plt.show()
 st.pyplot(fig)
+
+st.markdown(waist_info_string)
 
 #Display Tables
 st.subheader('Weight')
